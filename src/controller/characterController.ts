@@ -2,7 +2,7 @@ import characters, { ICharacter } from "../models/Character.js";
 import { Response, Request } from "express";
 
 class CharacterController {
-  static getAllCharacters = (_: Request, response: Response) => {
+  static getAll = (_: Request, response: Response) => {
     characters.find((error, characters) => {
       if (error) {
         response.status(500).send(error.message);
@@ -12,7 +12,7 @@ class CharacterController {
     });
   };
 
-  static getCharacterById = (request: Request, response: Response) => {
+  static getById = (request: Request, response: Response) => {
     const { id } = request.params;
     characters.findById(id, {}, (error, character) => {
       if (error) {
@@ -27,7 +27,7 @@ class CharacterController {
     });
   };
 
-  static addCharacter = (request: Request, response: Response) => {
+  static add = (request: Request, response: Response) => {
     const newCharacter = new characters<ICharacter>(request.body);
     newCharacter.save((error) => {
       if (error) {
@@ -40,9 +40,8 @@ class CharacterController {
     });
   };
 
-  static deleteCharacterById = (request: Request, response: Response) => {
+  static deleteById = (request: Request, response: Response) => {
     const { id } = request.params;
-
     characters.findByIdAndDelete(id, {}, (error, character) => {
       if (error) {
         response
@@ -56,9 +55,8 @@ class CharacterController {
     });
   };
 
-  static updateCharacterById = (request: Request, response: Response) => {
+  static updateById = (request: Request, response: Response) => {
     const { id } = request.params;
-
     characters.findByIdAndUpdate(
       id,
       { $set: request.body },
