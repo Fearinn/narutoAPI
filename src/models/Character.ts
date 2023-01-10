@@ -1,6 +1,6 @@
 import mongoose, {ObjectId} from "mongoose";
 
-interface ICharacter {
+export interface ICharacter {
   id: ObjectId
   name: string,
   clan: string

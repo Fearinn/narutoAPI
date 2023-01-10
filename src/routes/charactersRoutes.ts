@@ -5,5 +5,9 @@ const router = express.Router();
 
 router
   .get("/characters", CharacterController.getAllCharacters)
+  .get("/characters/:id", CharacterController.getCharacterById)
+  .post("/characters", CharacterController.addCharacter)
+  .delete("/characters/:id", CharacterController.deleteCharacterById)
+  .put("/characters/:id", CharacterController.updateCharacterById)
 
 export default router;
