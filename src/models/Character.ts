@@ -1,15 +1,22 @@
-import mongoose, {ObjectId} from "mongoose";
+import mongoose from "mongoose";
 
 export interface ICharacter {
-  id: ObjectId
-  name: string,
-  clan: string
+  name: string;
+  clan: string;
+  village?: string;
+  summary: string;
+  level?: "civilian" | "student" | "genin" | "chuunin" | "jounin" | "kage";
 }
 
 const characterSchema = new mongoose.Schema<ICharacter>({
-  id: { type: mongoose.Schema.Types.ObjectId },
-  name: { type: String, required: true },
-  clan: { type: String, required: true},
+  name: { type: String, required: true, index: true },
+  clan: { type: String, required: true, index: true },
+  summary: { type: String, required: true },
+  village: { type: String},
+  level: {
+    type: String,
+    enum: ["civilian", "student", "genin", "chuunin", "jounin", "kage"],
+  },
 });
 
 const characters = mongoose.model<ICharacter>("characters", characterSchema);
