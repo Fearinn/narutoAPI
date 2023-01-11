@@ -74,6 +74,19 @@ class CharacterController {
       }
     );
   };
+
+  static getByName = (request: Request, response: Response) => {
+    const {name} = request.params;
+    characters.findOne({name: name}, {}, {}, (error, character) => {
+      if (error) {
+        response.status(500).send(error.message)
+      } else if (!character) {
+        response.status(404).send("The character was not found")
+      } else {
+        response.status(200).send(character)
+      }
+    })
+  }
 }
 
 export default CharacterController;
