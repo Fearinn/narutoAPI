@@ -33,7 +33,7 @@ class CharacterController {
       if (error) {
         response
           .status(500)
-          .send(`[The id is possibly invalid] ${error.message}`);
+          .send(`${error.message}`);
       } else {
         response.status(200).send("Character successfully saved!");
       }
