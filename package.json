@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "tsc -w",
-    "start": "nodemon build/app.js"
+    "start": "node build/app.js",
+    "dev": "nodemon build/app.js"
   },
   "author": "fearinn",
   "license": "ISC",
